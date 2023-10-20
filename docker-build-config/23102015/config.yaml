@@ -1,0 +1,4 @@
+version: "0.2.1"
+location: "us-central1"
+project_id: "iron-bedrock-366809"
+repository: "train-ticket"

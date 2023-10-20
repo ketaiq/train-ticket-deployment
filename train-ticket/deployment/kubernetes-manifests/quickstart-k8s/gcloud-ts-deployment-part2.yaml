@@ -1,0 +1,2120 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-admin-basic-info-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-admin-basic-info-service
+  template:
+    metadata:
+      labels:
+        app: ts-admin-basic-info-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-admin-basic-info-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-admin-basic-info-service
+        ports:
+        - containerPort: 18767
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 18767
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-admin-order-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-admin-order-service
+  template:
+    metadata:
+      labels:
+        app: ts-admin-order-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-admin-order-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-admin-order-service
+        ports:
+        - containerPort: 16112
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 16112
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-admin-route-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-admin-route-service
+  template:
+    metadata:
+      labels:
+        app: ts-admin-route-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-admin-route-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-admin-route-service
+        ports:
+        - containerPort: 16113
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 16113
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 5000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-admin-travel-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-admin-travel-service
+  template:
+    metadata:
+      labels:
+        app: ts-admin-travel-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-admin-travel-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-admin-travel-service
+        ports:
+        - containerPort: 16114
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 16114
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-admin-user-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-admin-user-service
+  template:
+    metadata:
+      labels:
+        app: ts-admin-user-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-admin-user-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-admin-user-service
+        ports:
+        - containerPort: 16115
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 16115
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-assurance-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-assurance-service
+  template:
+    metadata:
+      labels:
+        app: ts-assurance-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-assurance-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-assurance-service
+        ports:
+        - containerPort: 18888
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 18888
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-basic-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-basic-service
+  template:
+    metadata:
+      labels:
+        app: ts-basic-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-basic-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-basic-service
+        ports:
+        - containerPort: 15680
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 15680
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-cancel-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-cancel-service
+  template:
+    metadata:
+      labels:
+        app: ts-cancel-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-cancel-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-cancel-service
+        ports:
+        - containerPort: 18885
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 18885
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-config-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-config-service
+  template:
+    metadata:
+      labels:
+        app: ts-config-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-config-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-config-service
+        ports:
+        - containerPort: 15679
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 15679
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-consign-price-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-consign-price-service
+  template:
+    metadata:
+      labels:
+        app: ts-consign-price-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-consign-price-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-consign-price-service
+        ports:
+        - containerPort: 16110
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 16110
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-consign-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-consign-service
+  template:
+    metadata:
+      labels:
+        app: ts-consign-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-consign-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-consign-service
+        ports:
+        - containerPort: 16111
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 16111
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-contacts-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-contacts-service
+  template:
+    metadata:
+      labels:
+        app: ts-contacts-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-contacts-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-contacts-service
+        ports:
+        - containerPort: 12347
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 12347
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-execute-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-execute-service
+  template:
+    metadata:
+      labels:
+        app: ts-execute-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-execute-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-execute-service
+        ports:
+        - containerPort: 12386
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 12386
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-food-map-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-food-map-service
+  template:
+    metadata:
+      labels:
+        app: ts-food-map-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-food-map-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-food-map-service
+        ports:
+        - containerPort: 18855
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 18855
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-food-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-food-service
+  template:
+    metadata:
+      labels:
+        app: ts-food-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: rabbitmq_host
+          value: rabbitmq
+        - name: rabbitmq_port
+          value: '5672'
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-food-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-food-service
+        ports:
+        - containerPort: 18856
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 18856
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-inside-payment-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-inside-payment-service
+  template:
+    metadata:
+      labels:
+        app: ts-inside-payment-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-inside-payment-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-inside-payment-service
+        ports:
+        - containerPort: 18673
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 18673
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-auth-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-auth-service
+  template:
+    metadata:
+      labels:
+        app: ts-auth-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-auth-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-auth-service
+        ports:
+        - containerPort: 12340
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 12340
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-news-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-news-service
+  template:
+    metadata:
+      labels:
+        app: ts-news-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-news-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-news-service
+        ports:
+        - containerPort: 12862
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 12862
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-notification-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-notification-service
+  template:
+    metadata:
+      labels:
+        app: ts-notification-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: email_address
+          value: trainticket_notify@163.com
+        - name: email_password
+          value: GZKSCXHBOLKMCLDQ
+        - name: rabbitmq_host
+          value: rabbitmq
+        - name: rabbitmq_port
+          value: '5672'
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-notification-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-notification-service
+        ports:
+        - containerPort: 17853
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 17853
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-order-other-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-order-other-service
+  template:
+    metadata:
+      labels:
+        app: ts-order-other-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-order-other-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-order-other-service
+        ports:
+        - containerPort: 12032
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 12032
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-order-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-order-service
+  template:
+    metadata:
+      labels:
+        app: ts-order-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-order-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-order-service
+        ports:
+        - containerPort: 12031
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 12031
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-payment-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-payment-service
+  template:
+    metadata:
+      labels:
+        app: ts-payment-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-payment-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-payment-service
+        ports:
+        - containerPort: 19001
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 19001
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-preserve-other-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-preserve-other-service
+  template:
+    metadata:
+      labels:
+        app: ts-preserve-other-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: rabbitmq_host
+          value: rabbitmq
+        - name: rabbitmq_port
+          value: '5672'
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-preserve-other-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-preserve-other-service
+        ports:
+        - containerPort: 14569
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 14569
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-preserve-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-preserve-service
+  template:
+    metadata:
+      labels:
+        app: ts-preserve-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: rabbitmq_host
+          value: rabbitmq
+        - name: rabbitmq_port
+          value: '5672'
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-preserve-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-preserve-service
+        ports:
+        - containerPort: 14568
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 14568
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-price-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-price-service
+  template:
+    metadata:
+      labels:
+        app: ts-price-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-price-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-price-service
+        ports:
+        - containerPort: 16579
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 16579
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-rebook-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-rebook-service
+  template:
+    metadata:
+      labels:
+        app: ts-rebook-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-rebook-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-rebook-service
+        ports:
+        - containerPort: 18886
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 18886
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-route-plan-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-route-plan-service
+  template:
+    metadata:
+      labels:
+        app: ts-route-plan-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-route-plan-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-route-plan-service
+        ports:
+        - containerPort: 14578
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 14578
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-route-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-route-service
+  template:
+    metadata:
+      labels:
+        app: ts-route-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-route-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-route-service
+        ports:
+        - containerPort: 11178
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 11178
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-seat-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-seat-service
+  template:
+    metadata:
+      labels:
+        app: ts-seat-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-seat-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-seat-service
+        ports:
+        - containerPort: 18898
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 18898
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-security-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-security-service
+  template:
+    metadata:
+      labels:
+        app: ts-security-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-security-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-security-service
+        ports:
+        - containerPort: 11188
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 11188
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-user-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-user-service
+  template:
+    metadata:
+      labels:
+        app: ts-user-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-user-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-user-service
+        ports:
+        - containerPort: 12342
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 12342
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-station-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-station-service
+  template:
+    metadata:
+      labels:
+        app: ts-station-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-station-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-station-service
+        ports:
+        - containerPort: 12345
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 12345
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-ticket-office-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-ticket-office-service
+  template:
+    metadata:
+      labels:
+        app: ts-ticket-office-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-ticket-office-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-ticket-office-service
+        ports:
+        - containerPort: 16108
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 16108
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-ticketinfo-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-ticketinfo-service
+  template:
+    metadata:
+      labels:
+        app: ts-ticketinfo-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-ticketinfo-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-ticketinfo-service
+        ports:
+        - containerPort: 15681
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 15681
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-train-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-train-service
+  template:
+    metadata:
+      labels:
+        app: ts-train-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-train-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-train-service
+        ports:
+        - containerPort: 14567
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 14567
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-travel2-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-travel2-service
+  template:
+    metadata:
+      labels:
+        app: ts-travel2-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-travel2-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-travel2-service
+        ports:
+        - containerPort: 16346
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 16346
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-travel-plan-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-travel-plan-service
+  template:
+    metadata:
+      labels:
+        app: ts-travel-plan-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-travel-plan-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-travel-plan-service
+        ports:
+        - containerPort: 14322
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 14322
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-travel-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-travel-service
+  template:
+    metadata:
+      labels:
+        app: ts-travel-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-travel-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-travel-service
+        ports:
+        - containerPort: 12346
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 12346
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-delivery-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-delivery-service
+  template:
+    metadata:
+      labels:
+        app: ts-delivery-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: rabbitmq_host
+          value: rabbitmq
+        - name: rabbitmq_port
+          value: '5672'
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-delivery-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-delivery-service
+        ports:
+        - containerPort: 18808
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 18808
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-verification-code-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-verification-code-service
+  template:
+    metadata:
+      labels:
+        app: ts-verification-code-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-verification-code-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-verification-code-service
+        ports:
+        - containerPort: 15678
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 15678
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-voucher-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-voucher-service
+  template:
+    metadata:
+      labels:
+        app: ts-voucher-service
+    spec:
+      containers:
+      - env:
+        - name: NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-voucher-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-voucher-service
+        ports:
+        - containerPort: 16101
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          tcpSocket:
+            port: 16101
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2000Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-admin-basic-info-service
+spec:
+  ports:
+  - name: http
+    port: 18767
+  selector:
+    app: ts-admin-basic-info-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-delivery-service
+spec:
+  ports:
+  - name: http
+    port: 18808
+  selector:
+    app: ts-delivery-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-admin-order-service
+spec:
+  ports:
+  - name: http
+    port: 16112
+  selector:
+    app: ts-admin-order-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-admin-route-service
+spec:
+  ports:
+  - name: http
+    port: 16113
+  selector:
+    app: ts-admin-route-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-admin-travel-service
+spec:
+  ports:
+  - name: http
+    port: 16114
+  selector:
+    app: ts-admin-travel-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-admin-user-service
+spec:
+  ports:
+  - name: http
+    port: 16115
+  selector:
+    app: ts-admin-user-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-assurance-service
+spec:
+  ports:
+  - name: http
+    port: 18888
+  selector:
+    app: ts-assurance-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-basic-service
+spec:
+  ports:
+  - name: http
+    port: 15680
+  selector:
+    app: ts-basic-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-cancel-service
+spec:
+  ports:
+  - name: http
+    port: 18885
+  selector:
+    app: ts-cancel-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-config-service
+spec:
+  ports:
+  - name: http
+    port: 15679
+  selector:
+    app: ts-config-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-consign-price-service
+spec:
+  ports:
+  - name: http
+    port: 16110
+  selector:
+    app: ts-consign-price-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-consign-service
+spec:
+  ports:
+  - name: http
+    port: 16111
+  selector:
+    app: ts-consign-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-contacts-service
+spec:
+  ports:
+  - name: http
+    port: 12347
+  selector:
+    app: ts-contacts-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-execute-service
+spec:
+  ports:
+  - name: http
+    port: 12386
+  selector:
+    app: ts-execute-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-food-map-service
+spec:
+  ports:
+  - name: http
+    port: 18855
+  selector:
+    app: ts-food-map-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-food-service
+spec:
+  ports:
+  - name: http
+    port: 18856
+  selector:
+    app: ts-food-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-inside-payment-service
+spec:
+  ports:
+  - name: http
+    port: 18673
+  selector:
+    app: ts-inside-payment-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-user-service
+spec:
+  ports:
+  - name: http
+    port: 12342
+  selector:
+    app: ts-user-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-notification-service
+spec:
+  ports:
+  - name: http
+    port: 17853
+  selector:
+    app: ts-notification-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-news-service
+spec:
+  ports:
+  - name: http
+    port: 12862
+  selector:
+    app: ts-news-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-order-other-service
+spec:
+  ports:
+  - name: http
+    port: 12032
+  selector:
+    app: ts-order-other-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-order-service
+spec:
+  ports:
+  - name: http
+    port: 12031
+  selector:
+    app: ts-order-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-payment-service
+spec:
+  ports:
+  - name: http
+    port: 19001
+  selector:
+    app: ts-payment-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-preserve-other-service
+spec:
+  ports:
+  - name: http
+    port: 14569
+  selector:
+    app: ts-preserve-other-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-preserve-service
+spec:
+  ports:
+  - name: http
+    port: 14568
+  selector:
+    app: ts-preserve-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-price-service
+spec:
+  ports:
+  - name: http
+    port: 16579
+  selector:
+    app: ts-price-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-rebook-service
+spec:
+  ports:
+  - name: http
+    port: 18886
+  selector:
+    app: ts-rebook-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-route-plan-service
+spec:
+  ports:
+  - name: http
+    port: 14578
+  selector:
+    app: ts-route-plan-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-route-service
+spec:
+  ports:
+  - name: http
+    port: 11178
+  selector:
+    app: ts-route-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-seat-service
+spec:
+  ports:
+  - name: http
+    port: 18898
+  selector:
+    app: ts-seat-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-security-service
+spec:
+  ports:
+  - name: http
+    port: 11188
+  selector:
+    app: ts-security-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-auth-service
+spec:
+  ports:
+  - name: http
+    nodePort: 30000
+    port: 12340
+  selector:
+    app: ts-auth-service
+  type: NodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-station-service
+spec:
+  ports:
+  - name: http
+    port: 12345
+  selector:
+    app: ts-station-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-ticket-office-service
+spec:
+  ports:
+  - name: http
+    port: 16108
+  selector:
+    app: ts-ticket-office-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-ticketinfo-service
+spec:
+  ports:
+  - name: http
+    port: 15681
+  selector:
+    app: ts-ticketinfo-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-train-service
+spec:
+  ports:
+  - name: http
+    port: 14567
+  selector:
+    app: ts-train-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-travel2-service
+spec:
+  ports:
+  - name: http
+    port: 16346
+  selector:
+    app: ts-travel2-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-travel-plan-service
+spec:
+  ports:
+  - name: http
+    port: 14322
+  selector:
+    app: ts-travel-plan-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-travel-service
+spec:
+  ports:
+  - name: http
+    port: 12346
+  selector:
+    app: ts-travel-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-verification-code-service
+spec:
+  ports:
+  - name: http
+    port: 15678
+  selector:
+    app: ts-verification-code-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-voucher-service
+spec:
+  ports:
+  - name: http
+    port: 16101
+  selector:
+    app: ts-voucher-service
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-avatar-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ts-avatar-service
+  template:
+    metadata:
+      labels:
+        app: ts-avatar-service
+    spec:
+      containers:
+      - image: us-central1-docker.pkg.dev/iron-bedrock-366809/train-ticket/ts-avatar-service:0.2.1
+        imagePullPolicy: Always
+        name: ts-avatar-service
+        ports:
+        - containerPort: 17001
+        readinessProbe:
+          initialDelaySeconds: 160
+          periodSeconds: 10
+          tcpSocket:
+            port: 17001
+          timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 200m
+            memory: 2000Mi
+          requests:
+            cpu: 50m
+            memory: 200Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ts-avatar-service
+spec:
+  ports:
+  - name: http
+    port: 17001
+  selector:
+    app: ts-avatar-service
