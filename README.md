@@ -47,8 +47,8 @@ gcloud artifacts docker images list us-central1-docker.pkg.dev/iron-bedrock-3668
 ```sh
 cd train-ticket/deployment/kubernetes-manifests/quickstart-k8s
 kubectl apply -f quickstart-ts-deployment-part1.yml
-kubectl apply -f quickstart-ts-deployment-part2.yml
-kubectl apply -f quickstart-ts-deployment-part3.yml
+kubectl apply -f gcloud-ts-deployment-part2.yaml
+kubectl apply -f gcloud-ts-deployment-part3.yaml
 ```
 
 Make sure all deployments statuses are OK.

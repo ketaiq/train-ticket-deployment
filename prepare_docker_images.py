@@ -71,7 +71,7 @@ def main():
             path_dockerfile = os.path.join(PATH_TRAIN_TICKET, fname)
             if os.path.exists(os.path.join(path_dockerfile, "Dockerfile")):
                 image_tag = f"{location}-docker.pkg.dev/{project_id}/{repository}/{fname}:{version}"
-                # build_and_push_image(path_dockerfile, image_tag, fname)
+                build_and_push_image(path_dockerfile, image_tag, fname)
                 update_k8s_deployment(k8s_deployment_part_2, image_tag, fname)
                 update_k8s_deployment(k8s_deployment_part_3, image_tag, fname)
 
