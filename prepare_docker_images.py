@@ -4,6 +4,7 @@ See https://cloud.google.com/artifact-registry/docs/docker/pushing-and-pulling f
 """
 import os
 import yaml
+import csv
 
 PATH_TRAIN_TICKET = "train-ticket"
 PATH_DOCKER_BUILD_CONFIG = "docker-build-config"
@@ -19,6 +20,19 @@ def build_and_push_image(path_dockerfile, image_tag, name):
     if docker_push != 0:
         print(f"[ERROR] Fail to push the image {name}!")
         return
+
+
+def clear_images(repo_name):
+    fname_csv = "images_to_delete.csv"
+    os.system(
+        f"gcloud artifacts docker images list {repo_name} --format='csv[no-heading](IMAGE)' > {fname_csv}"
+    )
+    with open(fname_csv, newline="") as csvfile:
+        images_to_delete = list(csv.reader(csvfile))
+    for image in images_to_delete:
+        os.system(
+            f"gcloud artifacts docker images delete {image[0]} --delete-tags --quiet"
+        )
 
 
 def read_config(name: str):
@@ -62,21 +76,23 @@ def main():
     location = config["location"]
     project_id = config["project_id"]
     repository = config["repository"]
+    repo_name = f"{location}-docker.pkg.dev/{project_id}/{repository}"
+    # clear_images(repo_name)
 
-    k8s_deployment_part_2 = read_k8s_deployment(2)
-    k8s_deployment_part_3 = read_k8s_deployment(3)
+    # k8s_deployment_part_2 = read_k8s_deployment(2)
+    # k8s_deployment_part_3 = read_k8s_deployment(3)
 
     for fname in os.listdir(PATH_TRAIN_TICKET):
         if fname.startswith("ts-"):
             path_dockerfile = os.path.join(PATH_TRAIN_TICKET, fname)
             if os.path.exists(os.path.join(path_dockerfile, "Dockerfile")):
-                image_tag = f"{location}-docker.pkg.dev/{project_id}/{repository}/{fname}:{version}"
+                image_tag = f"{repo_name}/{fname}:{version}"
                 build_and_push_image(path_dockerfile, image_tag, fname)
-                update_k8s_deployment(k8s_deployment_part_2, image_tag, fname)
-                update_k8s_deployment(k8s_deployment_part_3, image_tag, fname)
+                # update_k8s_deployment(k8s_deployment_part_2, image_tag, fname)
+                # update_k8s_deployment(k8s_deployment_part_3, image_tag, fname)
 
-    write_k8s_deployment(2, k8s_deployment_part_2)
-    write_k8s_deployment(3, k8s_deployment_part_3)
+    # write_k8s_deployment(2, k8s_deployment_part_2)
+    # write_k8s_deployment(3, k8s_deployment_part_3)
 
 
 if __name__ == "__main__":

@@ -42,6 +42,8 @@ gcloud artifacts docker images list us-central1-docker.pkg.dev/iron-bedrock-3668
 - autoscaling from 0 to 10
 - each node is a e2-standard-4 machine (4 vCPU, 2 core, 16 GB memory, 100 GB boot disk size)
 
+Enable workloads state metrics
+
 ### Deploy TrainTicket on GKE Cluster
 
 ```sh
