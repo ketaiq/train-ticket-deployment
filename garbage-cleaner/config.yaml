@@ -1,0 +1,4 @@
+host: "http://34.69.74.65:32677"
+admin_username: admin
+admin_password: 222222
+entity_min_age: 3600
