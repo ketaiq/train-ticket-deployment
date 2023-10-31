@@ -41,8 +41,8 @@ public class InsidePaymentController {
     }
 
     @GetMapping(value = "/inside_payment/{userId}/{money}")
-    public HttpEntity addMoney(@PathVariable String userId, @PathVariable
-            String money, @RequestHeader HttpHeaders headers) {
+    public HttpEntity addMoney(@PathVariable String userId, @PathVariable String money,
+            @RequestHeader HttpHeaders headers) {
         LOGGER.info("add money, userId: {}, money: {}", userId, money);
         return ok(service.addMoney(userId, money, headers));
     }
@@ -60,7 +60,8 @@ public class InsidePaymentController {
     }
 
     @GetMapping(value = "/inside_payment/drawback/{userId}/{money}")
-    public HttpEntity drawBack(@PathVariable String userId, @PathVariable String money, @RequestHeader HttpHeaders headers) {
+    public HttpEntity drawBack(@PathVariable String userId, @PathVariable String money,
+            @RequestHeader HttpHeaders headers) {
         LOGGER.info("draw back payment, userId: {}, money: {}", userId, money);
         return ok(service.drawBack(userId, money, headers));
     }
@@ -75,6 +76,12 @@ public class InsidePaymentController {
     public HttpEntity queryAddMoney(@RequestHeader HttpHeaders headers) {
         LOGGER.info("query add money");
         return ok(service.queryAddMoney(headers));
+    }
+
+    @DeleteMapping(path = "/inside_payment/order/{orderId}")
+    public HttpEntity deletePaymentByOrderId(@PathVariable String orderId, @RequestHeader HttpHeaders headers) {
+        LOGGER.info("Delete payments by order ID {}", orderId);
+        return ok(service.deletePaymentByOrderId(orderId, headers));
     }
 
 }

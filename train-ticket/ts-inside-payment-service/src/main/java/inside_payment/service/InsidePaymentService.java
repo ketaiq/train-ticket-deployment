@@ -4,7 +4,6 @@ import edu.fudan.common.util.Response;
 import inside_payment.entity.*;
 import org.springframework.http.HttpHeaders;
 
-
 /**
  * @author Administrator
  * @date 2017/6/20.
@@ -14,16 +13,16 @@ public interface InsidePaymentService {
     /**
      * pay by payment info
      *
-     * @param info payment info
+     * @param info    payment info
      * @param headers headers
      * @return Response
      */
-    Response pay(PaymentInfo info , HttpHeaders headers);
+    Response pay(PaymentInfo info, HttpHeaders headers);
 
     /**
      * create account by payment info
      *
-     * @param info payment info
+     * @param info    payment info
      * @param headers headers
      * @return Response
      */
@@ -32,12 +31,12 @@ public interface InsidePaymentService {
     /**
      * add money with user id, money
      *
-     * @param userId user id
-     * @param  money money
+     * @param userId  user id
+     * @param money   money
      * @param headers headers
      * @return Response
      */
-    Response addMoney(String userId,String money, HttpHeaders headers);
+    Response addMoney(String userId, String money, HttpHeaders headers);
 
     /**
      * query payment info
@@ -58,8 +57,8 @@ public interface InsidePaymentService {
     /**
      * drawback with user id, money
      *
-     * @param userId user id
-     * @param  money money
+     * @param userId  user id
+     * @param money   money
      * @param headers headers
      * @return Response
      */
@@ -68,7 +67,7 @@ public interface InsidePaymentService {
     /**
      * pay difference by payment info
      *
-     * @param info payment info
+     * @param info    payment info
      * @param headers headers
      * @return Response
      */
@@ -90,5 +89,13 @@ public interface InsidePaymentService {
      * @return Response
      */
     void initPayment(Payment payment, HttpHeaders headers);
+
+    /**
+     * delete payment entries by order ID
+     * 
+     * @param headers
+     * @return Response
+     */
+    Response deletePaymentByOrderId(String orderId, HttpHeaders headers);
 
 }

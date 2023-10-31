@@ -22,13 +22,18 @@ def build_and_push_image(path_dockerfile, image_tag, name):
         return
 
 
-def clear_images(repo_name):
-    fname_csv = "images_to_delete.csv"
-    os.system(
-        f"gcloud artifacts docker images list {repo_name} --format='csv[no-heading](IMAGE)' > {fname_csv}"
-    )
-    with open(fname_csv, newline="") as csvfile:
-        images_to_delete = list(csv.reader(csvfile))
+def clear_images(repo_name, images: list):
+    if images:
+        images_to_delete = []
+        for image in images:
+            images_to_delete.append([f"{repo_name}/{image}"])
+    else:
+        fname_csv = "images_to_delete.csv"
+        os.system(
+            f"gcloud artifacts docker images list {repo_name} --format='csv[no-heading](IMAGE)' > {fname_csv}"
+        )
+        with open(fname_csv, newline="") as csvfile:
+            images_to_delete = list(csv.reader(csvfile))
     for image in images_to_delete:
         os.system(
             f"gcloud artifacts docker images delete {image[0]} --delete-tags --quiet"
@@ -77,19 +82,23 @@ def main():
     project_id = config["project_id"]
     repository = config["repository"]
     repo_name = f"{location}-docker.pkg.dev/{project_id}/{repository}"
-    # clear_images(repo_name)
+    images = ["ts-inside-payment-service"]
+    if not images:
+        images = [
+            fname for fname in os.listdir(PATH_TRAIN_TICKET) if fname.startswith("ts-")
+        ]
+    # clear_images(repo_name, images)
 
     # k8s_deployment_part_2 = read_k8s_deployment(2)
     # k8s_deployment_part_3 = read_k8s_deployment(3)
 
-    for fname in os.listdir(PATH_TRAIN_TICKET):
-        if fname.startswith("ts-"):
-            path_dockerfile = os.path.join(PATH_TRAIN_TICKET, fname)
-            if os.path.exists(os.path.join(path_dockerfile, "Dockerfile")):
-                image_tag = f"{repo_name}/{fname}:{version}"
-                build_and_push_image(path_dockerfile, image_tag, fname)
-                # update_k8s_deployment(k8s_deployment_part_2, image_tag, fname)
-                # update_k8s_deployment(k8s_deployment_part_3, image_tag, fname)
+    for image in images:
+        path_dockerfile = os.path.join(PATH_TRAIN_TICKET, image)
+        if os.path.exists(os.path.join(path_dockerfile, "Dockerfile")):
+            image_tag = f"{repo_name}/{image}:{version}"
+            build_and_push_image(path_dockerfile, image_tag, image)
+            # update_k8s_deployment(k8s_deployment_part_2, image_tag, fname)
+            # update_k8s_deployment(k8s_deployment_part_3, image_tag, fname)
 
     # write_k8s_deployment(2, k8s_deployment_part_2)
     # write_k8s_deployment(3, k8s_deployment_part_3)

@@ -1,6 +1,8 @@
 package inside_payment.repository;
 
 import inside_payment.entity.Payment;
+
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
@@ -8,7 +10,7 @@ import java.util.List;
 /**
  * @author fdse
  */
-public interface PaymentRepository extends CrudRepository<Payment,String> {
+public interface PaymentRepository extends CrudRepository<Payment, String> {
 
     /**
      * find by id
@@ -41,4 +43,12 @@ public interface PaymentRepository extends CrudRepository<Payment,String> {
      * @return List<Payment>
      */
     List<Payment> findByUserId(String userId);
+
+    /**
+     * delete payment entries by the corresponding order ID
+     * 
+     * @param orderId
+     */
+    @Query(value = "DELETE FROM payment p WHERE p.orderId = ?1")
+    void deleteByOrderId(String orderId);
 }
