@@ -49,6 +49,6 @@ public interface PaymentRepository extends CrudRepository<Payment, String> {
      * 
      * @param orderId
      */
-    @Query(value = "DELETE FROM payment p WHERE p.orderId = ?1")
+    @Query(value = "{orderId: ?1}", delete = true)
     void deleteByOrderId(String orderId);
 }

@@ -80,11 +80,6 @@ kubectl get nodes -o wide
 python set_hpa.py
 ```
 
-### Configure Garbage Cleaner on Google Cloud
-
-Create corresponding Cloud Functions and Cron jobs.
-Assign the ingress IP adreess to the tt_host variable in the file *experiments.ini*.
-
 ## 2. Fixed Bugs
 - Increase heap size of JRE and GC limit
 - Add API *deletePaymentByOrderId* to ts-inside-payment-service
