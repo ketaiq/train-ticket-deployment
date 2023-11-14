@@ -54,6 +54,20 @@ kubectl apply -f gcloud-ts-deployment-part3.yaml
 ```
 
 Make sure all deployments statuses are OK.
+Enable observability on workloads state.
+
+### Deploy Chaos-Mesh on GKE Cluster
+
+Install Chaos Mesh using Helm in Docker environment.
+See https://chaos-mesh.org/docs/production-installation-using-helm/
+
+Create an ingress for the Chaos-Mesh dashboard http service.
+
+Get URL of Chaos-Mesh dashboard and access via URL:port
+```sh
+kubectl get nodes --field-selector metadata.name=`kubectl get pods -l app.kubernetes.io/component=chaos-dashboard --field-selector status.phase=Running -n chaos-mesh -o custom-columns=NODE:.spec.nodeName --no-headers` -o wide --no-headers | awk '{print $7}'
+```
+
 
 ### Allow Ingress Traffic for the Dashboard Service
 
