@@ -1,0 +1,3 @@
+[submodule "train-ticket-hpa"]
+	path = train-ticket-hpa
+	url = git@github.com:ketaiq/train-ticket-hpa.git
