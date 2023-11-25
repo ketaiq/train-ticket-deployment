@@ -88,6 +88,7 @@ kubectl get nodes -o wide
 ### Configure Horizontal Pod Autoscaling (HPA)
 
 ```sh
+cd train-ticket-hpa
 python set_hpa.py
 ```
 
