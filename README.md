@@ -92,6 +92,12 @@ cd train-ticket-hpa
 python set_hpa.py
 ```
 
+### Clear Failed Pods
+
+```sh
+kubectl delete pods --field-selector status.phase=Failed
+```
+
 ## 2. Fixed Bugs
 - Increase heap size of JRE and GC limit
 - Add API *deletePaymentByOrderId* to ts-inside-payment-service
